@@ -8,9 +8,7 @@ from tkinter import ttk
 
 def get_img_path():
 
-    # file = fd.askopenfile(mode="r", filetypes=[("PNG", "*png"), ("JPG", "*.jpg")])
     global file_path
-    # file_path = file.name
     file_path = "./playnite-png.png"
 
     selected_file_label = Label(frm2, text="Your selected file: " + file_path)
