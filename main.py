@@ -5,11 +5,11 @@ from tkinter import filedialog as fd
 from tkinter import ttk
 
 
-
 def get_img_path():
 
     global file_path
-    file_path = "./playnite-png.png"
+    file = fd.askopenfile(mode='r', filetypes=[('PNG Files', '*.png'), ('JPG Files', '.jpg')])
+    file_path = file.name
 
     selected_file_label = Label(frm2, text="Your selected file: " + file_path)
     selected_file_label.pack(side="top", anchor="nw")
@@ -62,8 +62,6 @@ search_file_button.pack(side="left", anchor="nw")
 text_watermark_button.pack(side="left", anchor="nw")
 img_watermark_button.pack(side="left", anchor="nw")
 save_button.pack(side="top", anchor="nw")
-
-get_img_path()
 
 frm.mainloop()
 
