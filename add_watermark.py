@@ -31,19 +31,6 @@ class WatermarkEngine():
         except OSError:
             print("Could not open image. Check image extension.")
 
-    # def img_watermark(self):
-    #     watermark = Image.open("./watermark_images/watermark.png", mode="r")
-    #     watermark.show()
-    #     wm_w, wm_h = watermark.size
-    #     coef = self.w / wm_w
-    #     watermark = watermark.resize((self.w, int(wm_h*coef)))
-    #     watermark.putalpha(90)
-    #     self.output = Image.new(mode="RGBA", size=(self.w, self.h))
-    #     self.output.paste(self.base_image)
-    #     y_pos = int((self.h / 2) - ((wm_h) / 2 * coef))
-    #     self.output.paste(watermark, (0, y_pos), watermark)
-    #     self.tk_image = PhotoImage(self.output.convert(mode="RGB"))
-
     def img_watermark(self):
         watermark = Image.open("./watermark_images/watermark.png", mode="r")
         wm_w, wm_h = watermark.size
@@ -57,6 +44,9 @@ class WatermarkEngine():
         self.tk_image = PhotoImage(self.output.convert(mode="RGB"))
 
     def save(self, path):
-        print(path)
-        self.output = self.output.convert(mode="RGB")
-        self.output.save(fp=f"{path}.jpg")
+        try:
+            self.output = self.output.convert(mode="RGB")
+            self.output.save(fp=f"{path}.png")
+        except (ValueError, AttributeError):
+            print("Save image exited")
+            return
